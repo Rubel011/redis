@@ -1,6 +1,7 @@
 const { createClient } = require("redis")
+require("dotenv").config()
 const client = createClient({
-    url:"redis://default:L3Sj9NbEpYnIGrnknMcdOoHoD0EVNXLl@redis-14976.c301.ap-south-1-1.ec2.cloud.redislabs.com:14976"
+    url:process.env.redis_url
 });
 client.connect();
 

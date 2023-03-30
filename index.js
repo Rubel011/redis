@@ -16,11 +16,11 @@ require("winston-mongodb")
 
 app.use(expressWinston.logger({
     transports: [
-      new winston.transports.File({
-        level:"info",
-        json:true,
-        filename:"alllogs.json"
-      }),
+      // new winston.transports.File({
+      //   level:"info",
+      //   json:true,
+      //   filename:"alllogs.json"
+      // }),
       new winston.transports.MongoDB({
         level:"silly",
         db:process.env.mongoUrl,
