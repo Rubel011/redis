@@ -45,8 +45,8 @@ userRoute.post("/login", async (req, res) => {
                     expiresIn: "7d"
                 });
                 // console.log(token);
-                client.set(token, "accessToken", { EX: 60 })
-                client.set(reftoken, "refreshToken", { EX: 850 })
+                client.set(`accessToken${user[0]._id}`,token,{ EX: 60 })
+                client.set( `refreshToken${user[0]._id}`,reftoken,{ EX: 850 })
                 res.cookie("token", token)
                 res.cookie("reftoken", reftoken)
                 res.status(200).json({ "success": "login successful", token })
@@ -90,7 +90,7 @@ userRoute.get("/refresh", async (req, res) => {
         var decoded = jwt.verify(reftoken, process.env.refreshKey);
         if (decoded) {
             var token = jwt.sign({ userId: decoded.userId }, process.env.accessKey, { expiresIn: "1m" });
-            client.set(token, "accessToken", { EX: 60 })
+            client.set(`accessToken${decoded.userId}`,token,{ EX: 60 })
             res.cookie("token", token)
             res.status(200).json({ token })
         } else {
