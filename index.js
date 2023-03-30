@@ -37,7 +37,7 @@ app.use(expressWinston.logger({
 
 // this is the home route---
 app.get("/",(req,res)=>{
-    res("home page");
+    res.send("home page");
 })
 
 
